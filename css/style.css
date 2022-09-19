@@ -114,6 +114,7 @@ ul {
   border-radius: 4px;
 }
 .mobile-nav .mobile-content .body-menu .card {
+  cursor: pointer;
   background: url("../images/card.png") #343a49 no-repeat;
   border-radius: 8px;
   padding: 16px;

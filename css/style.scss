@@ -118,6 +118,7 @@ ul {
         }
       }
       .card{
+        cursor: pointer;
         background: url('../images/card.png') $primary no-repeat;
         border-radius: 8px;
         padding: 16px;
