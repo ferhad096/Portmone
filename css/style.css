@@ -27,6 +27,7 @@ ul {
 }
 
 .mobile-nav {
+  opacity: 0;
   overflow: hidden;
   position: relative;
 }
@@ -139,6 +140,9 @@ ul {
   color: #ffffff;
 }
 
+.mobile-nav.active {
+  opacity: 1;
+}
 .mobile-nav.active .header-overlay {
   width: 100vw;
   height: 100vh;
@@ -146,6 +150,83 @@ ul {
   visibility: visible;
 }
 .mobile-nav.active .mobile-content {
+  transform: translateX(0);
+}
+
+.mobile-login {
+  opacity: 0;
+  overflow: hidden;
+  position: relative;
+}
+.mobile-login .login-overlay {
+  position: fixed;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+  background-color: rgb(0, 0, 0);
+  transition: 0.5s ease-in-out;
+  z-index: 999;
+}
+.mobile-login .login-content {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: fixed;
+  width: 50%;
+  right: 0;
+  padding-top: 20px;
+  background-color: #ffffff;
+  height: 100vh;
+  transition: 0.8s all ease;
+  transform: translateX(100%);
+  box-shadow: -10px 0 20px -10px rgba(0, 0, 0, 0.1019607843);
+  z-index: 2000;
+}
+.mobile-login .login-content .login-header {
+  padding: 0 20px 30px 20px;
+  width: 100%;
+}
+.mobile-login .login-content .login-header .close-login {
+  position: relative;
+  float: right;
+  margin-top: 8px;
+  display: block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  top: -20px;
+}
+.mobile-login .login-content .login-header .close-login span {
+  display: inline-block;
+  padding: 0 0 20px 15px;
+}
+.mobile-login .login-content .login-header .close-login span::before, .mobile-login .login-content .login-header .close-login span::after {
+  position: absolute;
+  content: "";
+  width: 2px;
+  height: 30px;
+  background: #000;
+}
+.mobile-login .login-content .login-header .close-login span::before {
+  transform: rotate(45deg);
+}
+.mobile-login .login-content .login-header .close-login span::after {
+  transform: rotate(-45deg);
+}
+.mobile-login .login-content .login-menu {
+  padding: 0 20px 20px 20px;
+}
+
+.mobile-login.active {
+  opacity: 1;
+}
+.mobile-login.active .login-overlay {
+  width: 100vw;
+  height: 100vh;
+  opacity: 0.3;
+  visibility: visible;
+}
+.mobile-login.active .login-content {
   transform: translateX(0);
 }
 
@@ -185,6 +266,7 @@ header nav .navbar .main a:hover {
   color: #fc3131;
 }
 header nav .navbar .main .dropdown {
+  z-index: 999;
   width: 220px;
   background-color: #fff;
   position: absolute;
@@ -285,6 +367,25 @@ header .right .search.active i {
 header .right .search.active span {
   display: block;
 }
+header .right .login-mobile {
+  cursor: pointer;
+  display: none;
+  padding: 10px 15px;
+  margin-left: 10px;
+  border-radius: 2px;
+  background-color: #f1f5f9;
+  transition: 0.3s ease-in-out;
+}
+header .right .login-mobile i {
+  color: #94a3b8;
+  transition: 0.3s ease-in-out;
+}
+header .right .login-mobile:hover {
+  background-color: #94a3b8;
+}
+header .right .login-mobile:hover i {
+  color: #f1f5f9;
+}
 header .right .login {
   margin-left: 10px;
 }
@@ -298,6 +399,111 @@ header .right .login .register:hover {
   color: #ffffff;
 }
 
+#hero {
+  padding: 70px 0;
+  position: relative;
+  background: linear-gradient(0deg, #ffffff, #f0f9ff 10%);
+  z-index: 1;
+}
+#hero::before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 25%;
+  height: 100%;
+  background: url("../images/hero-bg-left.svg") no-repeat;
+}
+#hero::after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 25%;
+  height: 100%;
+  background: url("../images/hero-bg-right.svg") no-repeat;
+}
+#hero .heading {
+  text-align: center;
+}
+#hero .heading h1 {
+  font-size: 40px;
+  margin-bottom: 16px;
+  font-weight: 700;
+}
+#hero .heading p {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+#hero .search {
+  margin-top: 40px;
+  background-color: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.0784313725);
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+#hero .search input {
+  width: 100%;
+  border: none;
+  outline: none;
+  margin-left: 10px;
+}
+#hero .box {
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.0784313725);
+  border-radius: 8px;
+  background-color: #fff;
+}
+#hero .box .title h6 {
+  cursor: pointer;
+  margin-bottom: 0;
+}
+#hero .box .title h6 i {
+  color: #00a0ff;
+  margin-right: 20px;
+}
+#hero .box form {
+  margin-top: 30px;
+}
+#hero .box form .input-box {
+  display: block;
+  border: solid 2px #f1f5f9;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 10px 16px;
+  position: relative;
+}
+#hero .box form .input-box label {
+  position: absolute;
+  font-size: 12px;
+  font-weight: 600;
+  top: -10px;
+  background-color: #fff;
+}
+#hero .box form .input-box span {
+  position: absolute;
+}
+#hero .box form .input-box span + input {
+  margin-left: 40px;
+}
+#hero .box form .input-box input {
+  border: none;
+  outline: none;
+}
+#hero .box form .input-box:focus-within {
+  border-color: #94a3b8;
+}
+#hero .box form button {
+  display: inline-block;
+  border: none;
+  padding: 10px 15px;
+}
+
 @media (max-width: 1200px) {
   header .bar {
     display: block;
@@ -305,20 +511,41 @@ header .right .login .register:hover {
   header nav {
     display: none;
   }
+  #hero .box .title .payment {
+    margin-top: 10px;
+  }
+  #hero .box form div + div {
+    margin-top: 20px;
+  }
 }
 @media (max-width: 992px) {
-  header .login {
+  header .right .login-mobile {
+    display: block;
+  }
+  header .right .login {
     display: none;
   }
-  header .search {
+  header .right .search {
     padding: 16px 20px;
+  }
+  #hero {
+    padding: 30px 0;
+  }
+  #hero .box .title {
+    display: block !important;
   }
 }
 @media (max-width: 576px) {
   .mobile-nav .mobile-content {
     width: 90%;
   }
+  .mobile-login .login-content {
+    width: 90%;
+  }
   header .logo.none {
     display: none;
+  }
+  header .logo a {
+    font-size: 20px;
   }
 }/*# sourceMappingURL=style.css.map */

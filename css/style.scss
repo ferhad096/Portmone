@@ -1,6 +1,7 @@
 $primary: #343a49;
 $red: #fc3131;
 $red-hover: #dc2626;
+$blue: #00a0ff;
 $gray: #f1f5f9;
 $gray-logo: #94a3b8;
 $white: #ffffff;
@@ -33,6 +34,7 @@ ul {
 }
 
 .mobile-nav {
+  opacity: 0;
   overflow: hidden;
   position: relative;
   .header-overlay {
@@ -96,7 +98,7 @@ ul {
         padding: 0;
         margin: 0;
         li {
-          transition: .3s ease-in-out;
+          transition: 0.3s ease-in-out;
           a {
             font-weight: 700;
             font-size: 14px;
@@ -104,40 +106,40 @@ ul {
             color: $primary;
             display: block;
             transition: 0.3s all ease;
-            i{
+            i {
               width: 20px;
             }
             &:hover {
               color: $primary;
             }
           }
-          &:hover{
+          &:hover {
             background-color: $gray;
             border-radius: 4px;
           }
         }
       }
-      .card{
+      .card {
         cursor: pointer;
-        background: url('../images/card.png') $primary no-repeat;
+        background: url("../images/card.png") $primary no-repeat;
         border-radius: 8px;
         padding: 16px;
         margin-top: 16px;
-        h6{
+        h6 {
           color: $red;
           margin-bottom: 18px;
-          span{
+          span {
             color: $white;
           }
         }
-        .bottom{
+        .bottom {
           margin-bottom: 12px;
-          p{
+          p {
             color: $white;
             font-weight: 700;
             margin-bottom: 0;
           }
-          i{
+          i {
             color: $white;
           }
         }
@@ -147,6 +149,7 @@ ul {
 }
 
 .mobile-nav.active {
+  opacity: 1;
   .header-overlay {
     width: 100vw;
     height: 100vh;
@@ -154,6 +157,84 @@ ul {
     visibility: visible;
   }
   .mobile-content {
+    transform: translateX(0);
+  }
+}
+
+.mobile-login {
+  opacity: 0;
+  overflow: hidden;
+  position: relative;
+  .login-overlay {
+    position: fixed;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    visibility: hidden;
+    background-color: rgb(0, 0, 0);
+    transition: 0.5s ease-in-out;
+    z-index: 999;
+  }
+  .login-content {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    position: fixed;
+    width: 50%;
+    right: 0;
+    padding-top: 20px;
+    background-color: $white;
+    height: calc(100vh);
+    transition: 0.8s all ease;
+    transform: translateX(100%);
+    box-shadow: -10px 0 20px -10px #0000001a;
+    z-index: 2000;
+    .login-header {
+      padding: 0 20px 30px 20px;
+      width: 100%;
+      .close-login {
+        position: relative;
+        float: right;
+        margin-top: 8px;
+        display: block;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        top: -20px;
+        span {
+          display: inline-block;
+          padding: 0 0 20px 15px;
+          &::before,
+          &::after {
+            position: absolute;
+            content: "";
+            width: 2px;
+            height: 30px;
+            background: #000;
+          }
+          &::before {
+            transform: rotate(45deg);
+          }
+          &::after {
+            transform: rotate(-45deg);
+          }
+        }
+      }
+    }
+    .login-menu {
+      padding: 0 20px 20px 20px;
+    }
+  }
+}
+
+.mobile-login.active {
+  opacity: 1;
+  .login-overlay {
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.3;
+    visibility: visible;
+  }
+  .login-content {
     transform: translateX(0);
   }
 }
@@ -194,6 +275,7 @@ header {
           }
         }
         .dropdown {
+          z-index: 999;
           width: 220px;
           background-color: #fff;
           position: absolute;
@@ -243,7 +325,7 @@ header {
       }
     }
   }
-  nav.none{
+  nav.none {
     display: none;
   }
   .search-form {
@@ -265,7 +347,7 @@ header {
       }
     }
   }
-  .search-form.block{
+  .search-form.block {
     display: block;
   }
   .right {
@@ -278,28 +360,47 @@ header {
       padding: 26px 20px;
       margin-left: 10px;
       i {
-        transition: .3s ease-in-out;
+        transition: 0.3s ease-in-out;
       }
-      span{
+      span {
         font-weight: 700;
         display: none;
-        transition: .3s ease-in-out;
+        transition: 0.3s ease-in-out;
       }
       &:hover {
         i {
           color: $red;
         }
-        span{
+        span {
           color: $red;
         }
       }
     }
-    .search.active{
-      i{
+    .search.active {
+      i {
         display: none;
       }
-      span{
+      span {
         display: block;
+      }
+    }
+    .login-mobile {
+      cursor: pointer;
+      display: none;
+      padding: 10px 15px;
+      margin-left: 10px;
+      border-radius: 2px;
+      background-color: $gray;
+      transition: 0.3s ease-in-out;
+      i {
+        color: $gray-logo;
+        transition: 0.3s ease-in-out;
+      }
+      &:hover {
+        background-color: $gray-logo;
+        i {
+          color: $gray;
+        }
       }
     }
     .login {
@@ -317,7 +418,112 @@ header {
   }
 }
 
-
+#hero {
+  padding: 70px 0;
+  position: relative;
+  background: linear-gradient(0deg, #ffffff, #f0f9ff 10%);
+  z-index: 1;
+  &::before {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    background: url("../images/hero-bg-left.svg") no-repeat;
+  }
+  &::after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 25%;
+    height: 100%;
+    background: url("../images/hero-bg-right.svg") no-repeat;
+  }
+  .heading {
+    text-align: center;
+    h1 {
+      font-size: 40px;
+      margin-bottom: 16px;
+      font-weight: 700;
+    }
+    p {
+      font-size: 20px;
+      margin-bottom: 16px;
+    }
+  }
+  .search {
+    margin-top: 40px;
+    background-color: #fff;
+    box-shadow: 0 2px 6px #00000014;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    input {
+      width: 100%;
+      border: none;
+      outline: none;
+      margin-left: 10px;
+    }
+  }
+  .box {
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: 0 2px 6px #00000014;
+    border-radius: 8px;
+    background-color: #fff;
+    .title {
+      h6 {
+        cursor: pointer;
+        margin-bottom: 0;
+        i {
+          color: $blue;
+          margin-right: 20px;
+        }
+      }
+    }
+    form {
+      margin-top: 30px;
+      .input-box {
+        display: block;
+        border: solid 2px $gray;
+        border-radius: 4px;
+        font-size: 12px;
+        padding: 10px 16px;
+        position: relative;
+        label {
+          position: absolute;
+          font-size: 12px;
+          font-weight: 600;
+          top: -10px;
+          background-color: #fff;
+        }
+        span {
+          position: absolute;
+        }
+        span + input {
+          margin-left: 40px;
+        }
+        input {
+          border: none;
+          outline: none;
+        }
+        &:focus-within {
+          border-color: $gray-logo;
+        }
+      }
+      button {
+        display: inline-block;
+        border: none;
+        padding: 10px 15px;
+      }
+    }
+  }
+}
 
 @media (max-width: 1200px) {
   header {
@@ -328,29 +534,65 @@ header {
       display: none;
     }
   }
+  #hero {
+    .box {
+      .title {
+        .payment {
+          margin-top: 10px;
+        }
+      }
+      form {
+        div + div {
+          margin-top: 20px;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: 992px) {
   header {
-    .login {
-      display: none;
+    .right {
+      .login-mobile {
+        display: block;
+      }
+      .login {
+        display: none;
+      }
+      .search {
+        padding: 16px 20px;
+      }
     }
-    .search {
-      padding: 16px 20px;
+  }
+  #hero {
+    padding: 30px 0;
+    .box {
+      .title {
+        display: block !important;
+      }
     }
   }
 }
 
-
 @media (max-width: 576px) {
-  .mobile-nav{
-    .mobile-content{
+  .mobile-nav {
+    .mobile-content {
       width: 90%;
     }
   }
-  header{
-    .logo.none{
+  .mobile-login {
+    .login-content {
+      width: 90%;
+    }
+  }
+  header {
+    .logo.none {
       display: none;
+    }
+    .logo {
+      a {
+        font-size: 20px;
+      }
     }
   }
 }
